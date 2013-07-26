@@ -256,18 +256,20 @@ function! ShowRoutes()
   :normal dd
 endfunction
 map <leader>gR :call ShowRoutes()<cr>
-map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
-map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets<cr>
-map <leader>gf :CommandTFlush<cr>\|:CommandT features<cr>
+map <leader>gv :CtrlP app/views<cr>
+map <leader>gc :CtrlP app/controllers<cr>
+map <leader>gm :CtrlP app/models<cr>
+map <leader>gh :CtrlP app/helpers<cr>
+map <leader>gl :CtrlP lib<cr>
+map <leader>gp :CtrlP public<cr>
+map <leader>gs :CtrlP app/assets/stylesheets<cr>
+map <leader>gj :CtrlP app/assets/javascripts<cr>
+map <leader>gf :CtrlP features<cr>
 map <leader>gg :topleft 100 :split Gemfile<cr>
-map <leader>gt :CommandTFlush<cr>\|:CommandTTag<cr>
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
-map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
+map <leader>gt :CtrlPTag<cr>
+map <leader>f :CtrlP<cr>
+map <leader>F :CtrlP %%<cr>
+map <leader>s :w<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SWITCH BETWEEN TEST AND PRODUCTION CODE
