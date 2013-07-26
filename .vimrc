@@ -256,19 +256,19 @@ function! ShowRoutes()
   :normal dd
 endfunction
 map <leader>gR :call ShowRoutes()<cr>
-map <leader>gv :CtrlP app/views<cr>
-map <leader>gc :CtrlP app/controllers<cr>
-map <leader>gm :CtrlP app/models<cr>
-map <leader>gh :CtrlP app/helpers<cr>
-map <leader>gl :CtrlP lib<cr>
-map <leader>gp :CtrlP public<cr>
-map <leader>gs :CtrlP app/assets/stylesheets<cr>
-map <leader>gj :CtrlP app/assets/javascripts<cr>
-map <leader>gf :CtrlP features<cr>
+map <leader>gv :CtrlPClearAllCaches<cr>:CtrlP app/views<cr>
+map <leader>gc :CtrlPClearAllCaches<cr>:CtrlP app/controllers<cr>
+map <leader>gm :CtrlPClearAllCaches<cr>:CtrlP app/models<cr>
+map <leader>gh :CtrlPClearAllCaches<cr>:CtrlP app/helpers<cr>
+map <leader>gl :CtrlPClearAllCaches<cr>:CtrlP lib<cr>
+map <leader>gp :CtrlPClearAllCaches<cr>:CtrlP public<cr>
+map <leader>gs :CtrlPClearAllCaches<cr>:CtrlP app/assets/stylesheets<cr>
+map <leader>gj :CtrlPClearAllCaches<cr>:CtrlP app/assets/javascripts<cr>
+map <leader>gf :CtrlPClearAllCaches<cr>:CtrlP features<cr>
 map <leader>gg :topleft 100 :split Gemfile<cr>
 map <leader>gt :CtrlPTag<cr>
-map <leader>f :CtrlP<cr>
-map <leader>F :CtrlP %%<cr>
+map <leader>f :CtrlPClearAllCaches<cr>:CtrlP<cr>
+map <leader>F :CtrlPClearAllCaches<cr>:CtrlP %%<cr>
 map <leader>s :w<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
