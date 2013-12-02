@@ -1,105 +1,63 @@
-# Set custom prompt
-setopt PROMPT_SUBST
-autoload -U promptinit
-promptinit
-prompt grb
+# Set locale to UTF8
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
 
-# Initialize completion
-autoload -U compinit
-compinit
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
 
-# Add paths
-export PATH=/usr/local/sbin:/usr/local/bin:${PATH}
-export PATH="$HOME/bin:$PATH"
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="crunch"
+#ZSH_THEME="Soliah"
 
-# Colorize terminal
-export TERM='xterm-color'
-alias ls='ls -G'
-alias ll='ls -lG'
-export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
-export GREP_OPTIONS="--color"
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Nicer history
-export HISTSIZE=100000
-export HISTFILE="$HOME/.history"
-export SAVEHIST=$HISTSIZE
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
 
-# Use vim as the editor
-export EDITOR=vi
-# GNU Screen sets -o vi if EDITOR=vi, so we have to force it back.
-set -o emacs
+# Comment this out to disable bi-weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
 
-# Use C-x C-e to edit the current command line
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '\C-x\C-e' edit-command-line
+# Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
+# export UPDATE_ZSH_DAYS=13
 
-# By default, zsh considers many characters part of a word (e.g., _ and -).
-# Narrow that down to allow easier skipping through words via M-f and M-b.
-export WORDCHARS='*?[]~&;!$%^<>'
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
 
-# Highlight search results in ack.
-export ACK_COLOR_MATCH='red'
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-# Aliases
-alias r="bundle exec rails"
-alias t="script/test $*"
-alias f="script/features $*"
-function mcd() { mkdir -p $1 && cd $1 }
-function cdf() { cd *$1*/ } # stolen from @topfunky
-function das() {
-    cd ~/proj/destroyallsoftware.com/destroyallsoftware.com
-    pwd
-    export RUBY_HEAP_MIN_SLOTS=1000000
-    export RUBY_HEAP_SLOTS_INCREMENT=1000000
-    export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-    export RUBY_GC_MALLOC_LIMIT=1000000000
-    export RUBY_HEAP_FREE_MIN=500000
-    . /Volumes/misc/filing/business/destroy\ all\ software\ llc/s3.sh
-    . /Volumes/misc/filing/business/destroy\ all\ software\ llc/braintree.sh
-}
+DISABLE_CORRECTION="true"
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+# COMPLETION_WAITING_DOTS="true"
 
-# Activate the closest virtualenv by looking in parent directories.
-activate_virtualenv() {
-    if [ -f env/bin/activate ]; then . env/bin/activate;
-    elif [ -f ../env/bin/activate ]; then . ../env/bin/activate;
-    elif [ -f ../../env/bin/activate ]; then . ../../env/bin/activate;
-    elif [ -f ../../../env/bin/activate ]; then . ../../../env/bin/activate;
-    fi
-}
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git osx brew rvm gem ruby rake rails bundler cap zeus encode64 urltools pow)
 
-# Find the directory of the named Python module.
-python_module_dir () {
-    echo "$(python -c "import os.path as _, ${1}; \
-        print _.dirname(_.realpath(${1}.__file__[:-1]))"
-        )"
-}
+source $ZSH/oh-my-zsh.sh
+alias htop='nocorrect htop'
+alias tdl='tail -f log/development.log'
+alias tailf="tail -f"
+alias refreshdns='sudo killall -HUP mDNSResponder'
+alias cdp='cd ~/projects//seekermissile/SeekerMissile'
 
-# By @ieure; copied from https://gist.github.com/1474072
-#
-# It finds a file, looking up through parent directories until it finds one.
-# Use it like this:
-#
-#   $ ls .tmux.conf
-#   ls: .tmux.conf: No such file or directory
-#
-#   $ ls `up .tmux.conf`
-#   /Users/grb/.tmux.conf
-#
-#   $ cat `up .tmux.conf`
-#   set -g default-terminal "screen-256color"
-#
-function up()
-{
-    local DIR=$PWD
-    local TARGET=$1
-    while [ ! -e $DIR/$TARGET -a $DIR != "/" ]; do
-        DIR=$(dirname $DIR)
-    done
-    test $DIR != "/" && echo $DIR/$TARGET
-}
+# Nginx needs to bind to port 80 so must run as /Library/LaunchDaemon with sudo
+alias nginx-start='sudo launchctl load /System/Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
+alias nginx-stop='sudo launchctl unload /System/Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
 
-# Initialize RVM
-PATH=$PATH:$HOME/.rvm/bin
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+alias rspec='nocorrect rspec'
 
+# Customize to your needs...
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$HOME/.rvm/bin:$PATH
+export JAVA_OPTS="-Xms512m -Xmx1024m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true"
+export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
+export EDITOR='mate'
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"

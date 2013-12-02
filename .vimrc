@@ -13,7 +13,7 @@ set hidden
 set history=10000
 set expandtab
 set tabstop=4
-set shiftwidth=4
+set shiftwidth=2
 set softtabstop=4
 set autoindent
 set laststatus=2
@@ -270,6 +270,9 @@ map <leader>gt :CtrlPTag<cr>
 map <leader>f :CtrlPClearAllCaches<cr>:CtrlP<cr>
 map <leader>F :CtrlPClearAllCaches<cr>:CtrlP %%<cr>
 map <leader>s :w<cr>
+map <leader>[ :tabprev<cr>
+map <leader>] :tabnext<cr>
+map <leader>= :tabnew %%<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SWITCH BETWEEN TEST AND PRODUCTION CODE
